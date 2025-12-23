@@ -229,19 +229,48 @@
       window.ChristmasTree = {
         data: {
           messages: [
-            `Huyền à..
-            Noel này chúc em luôn ấm áp và bình yên
-            theo cách riêng của em.
+            `Huyền à, Noel đến rồi.
             
-            Giữa ánh đèn lung linh
-            nếu có lúc em dừng lại nơi đây
-            mong rằng em sẽ hiểu...
-            có người nghĩ đến em rất dịu dàng
+            Chúc em luôn bình an, giữ được sự ấm áp cần có
+            và đủ vững vàng với những điều mình chọn.
+            
+            Giữa những ánh đèn và không khí cuối năm,
+            chỉ mong em có những ngày trôi qua nhẹ nhàng,
+            không vội, không áp lực.
 
-            Và nếu chợt nhớ đến ai đó
-            anh mong mình là người đó.`,
-          ], //Thay lời nhắn ở đây
-          images: ["./img/1.jpg", "./img/2.jpg", "./img/3.jpg"], //thêm ảnh ở đây
+            Một mùa Giáng sinh an lành gửi đến em..`,
+          ],
+          images: [
+            "./img/1.jpg",
+            "./img/2.jpg",
+            "./img/3.jpg",
+            "./img/4.jpg",
+            "./img/5.jpg",
+            "./img/6.jpg",
+            "./img/7.jpg",
+            "./img/8.jpg",
+            "./img/9.jpg",
+            "./img/10.jpg",
+            "./img/11.jpg",
+            "./img/12.jpg",
+            "./img/13.jpg",
+            "./img/14.jpg",
+            "./img/15.jpg",
+            "./img/16.jpg",
+            "./img/17.jpg",
+            "./img/18.jpg",
+            "./img/19.jpg",
+            "./img/20.jpg",
+            "./img/21.jpg",
+            "./img/22.jpg",
+            "./img/23.jpg",
+            "./img/24.jpg",
+            "./img/25.jpg",
+            "./img/27.jpg",
+            "./img/28.jpg",
+            "./img/29.jpg",
+            "./img/30.jpg",
+          ],
         },
       };
       let scene, camera, renderer, controls, composer;
@@ -458,12 +487,12 @@
         });
 
         imgElement.style.opacity = "0";
-        imgElement.style.transform = "translate(-50%, -50%) scale(2)";
+        imgElement.style.transform = "translate(-50%, -50%) scale(5)";
         textContainer.appendChild(imgElement);
 
         setTimeout(() => {
           imgElement.style.transition = "transform 0.4s, opacity 0.3s";
-          imgElement.style.transform = "translate(-50%, -50%) scale(2)";
+          imgElement.style.transform = "translate(-50%, -50%) scale(5)";
           imgElement.style.opacity = "1";
         }, 50);
 
@@ -1259,7 +1288,7 @@
           }
         }
         const gravity = -0.002;
-        const groundLevel = -30;
+        const groundLevel = -300;
         const nowTime = Date.now() * 0.001;
         raycaster.setFromCamera(mouse, camera);
 
@@ -1301,11 +1330,18 @@
           } else {
             imgObj.element.style.display = "none";
           }
+          // ẢNH TỰ ĐỘNG XOÁ
+          // if (!imgObj.isCaught && imgObj.position.y < groundLevel) {
+          //   if (imgObj.element.parentNode) {
+          //     imgObj.element.parentNode.removeChild(imgObj.element);
+          //   }
+          //   activeImages.splice(i, 1);
+          // }
+
+          // ẢNH KO XOÁ
           if (!imgObj.isCaught && imgObj.position.y < groundLevel) {
-            if (imgObj.element.parentNode) {
-              imgObj.element.parentNode.removeChild(imgObj.element);
-            }
-            activeImages.splice(i, 1);
+            imgObj.position.y = groundLevel; // nằm trên đất
+            imgObj.velocity.set(0, 0, 0); // dừng lại
           }
         }
 
@@ -1375,9 +1411,9 @@
       initAudioReactive();
 
       /* ===== AUTO IMAGE SPAWN ===== */
-      const AUTO_IMAGE_INTERVAL = 3000;
+      const AUTO_IMAGE_INTERVAL = 5000;
       const AUTO_IMAGE_BATCH = 3;
-      const AUTO_IMAGE_MAX = 15;
+      const AUTO_IMAGE_MAX = 30;
 
       setInterval(() => {
         if (!isTreeDrawn) return;
